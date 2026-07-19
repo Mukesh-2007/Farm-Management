@@ -33,9 +33,11 @@ const Header = ({ title = "Dashboard" }) => {
         {/* Demo Switcher Widget (Styled beautifully like a tool status bar) */}
         <div className="flex items-center space-x-2 bg-slate-50 border border-slate-200/80 px-3 py-1.5 rounded-xl shadow-inner hover:bg-slate-100/40 transition-colors">
           <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1">
-            <KeyRound className="w-3.5 h-3.5 text-farm-600 animate-pulse" /> Sandbox Role:
+            <KeyRound className="w-3.5 h-3.5 text-farm-600 animate-pulse" aria-hidden="true" /> Sandbox Role:
           </span>
+          <label htmlFor="role-switcher" className="sr-only">Switch user role</label>
           <select
+            id="role-switcher"
             value={user.role}
             onChange={handleRoleChange}
             className="text-xs font-bold bg-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-farm-500/20 focus:border-farm-500 cursor-pointer shadow-sm hover:border-slate-300 transition-colors"
@@ -51,11 +53,14 @@ const Header = ({ title = "Dashboard" }) => {
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="p-2 text-slate-400 hover:text-slate-650 hover:bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-xl transition-all relative focus:outline-none cursor-pointer flex items-center justify-center"
+            className="p-2 text-slate-400 hover:text-slate-650 hover:bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-xl transition-all relative focus:outline-none focus:ring-2 focus:ring-farm-400 focus:ring-offset-2 cursor-pointer flex items-center justify-center"
+            aria-label={`Notifications ${unreadCount > 0 ? `(${unreadCount} unread)` : ''}`}
+            aria-expanded={showNotifications}
+            aria-haspopup="true"
           >
-            <Bell className={`w-5 h-5 ${unreadCount > 0 ? 'animate-swing' : ''}`} />
+            <Bell className={`w-5 h-5 ${unreadCount > 0 ? 'animate-swing' : ''}`} aria-hidden="true" />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4.5 h-4.5 bg-rose-500 text-white rounded-full text-[9px] font-bold flex items-center justify-center shadow-md shadow-rose-500/20">
+              <span className="absolute -top-1 -right-1 w-4.5 h-4.5 bg-rose-500 text-white rounded-full text-[9px] font-bold flex items-center justify-center shadow-md shadow-rose-500/20" aria-hidden="true">
                 {unreadCount}
               </span>
             )}

@@ -2,11 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { FarmDataProvider } from './context/FarmDataContext';
+import { ToastProvider } from './context/ToastContext';
 import ProtectedRoute from './routes/ProtectedRoute';
 
 // Layouts
 import Sidebar from './components/Layout/Sidebar';
 import Header from './components/Layout/Header';
+import ToastContainer from './components/Common/ToastContainer';
 
 // Pages
 import Login from './pages/Login';
@@ -121,11 +123,14 @@ const AppContent = () => {
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <FarmDataProvider>
-          <AppContent />
-        </FarmDataProvider>
-      </AuthProvider>
+      <ToastProvider>
+        <AuthProvider>
+          <FarmDataProvider>
+            <AppContent />
+            <ToastContainer />
+          </FarmDataProvider>
+        </AuthProvider>
+      </ToastProvider>
     </Router>
   );
 }

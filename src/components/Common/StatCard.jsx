@@ -22,7 +22,7 @@ const StatCard = ({ title, value, subtext, icon: Icon, trend, trendType = 'neutr
   };
 
   return (
-    <div className="glass-card rounded-2xl border border-slate-150 p-6 flex items-start justify-between hover-lift subtle-shadow transition-all duration-300">
+    <div className="glass-card rounded-2xl border border-slate-150 p-6 flex items-start justify-between hover-lift subtle-shadow transition-all duration-300 btn-press cursor-pointer">
       <div className="space-y-3">
         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">{title}</span>
         <div className="flex items-baseline space-x-2">
@@ -37,7 +37,7 @@ const StatCard = ({ title, value, subtext, icon: Icon, trend, trendType = 'neutr
       </div>
       
       {Icon && (
-        <div className={`p-3.5 rounded-xl border shadow-sm ${getIconBg()}`}>
+        <div className={`p-3.5 rounded-xl border shadow-sm icon-bounce ${getIconBg()}`}>
           <Icon className="w-5.5 h-5.5" />
         </div>
       )}
